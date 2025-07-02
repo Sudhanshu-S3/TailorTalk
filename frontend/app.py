@@ -62,7 +62,6 @@ st.markdown("### Example Prompts")
 st.info("""
 - "Are there any 1-hour slots available tomorrow?"
 - "Book me an appointment for tomorrow or 2025-07-06 at 3pm for a suit fitting."
-- "What appointments do I have?"
 """)
 
 
