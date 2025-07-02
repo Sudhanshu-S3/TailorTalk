@@ -3,12 +3,8 @@ import requests
 import os
 from datetime import date, timedelta
 
-# --- IMPORTANT ---
-# Set this to the URL of your deployed FastAPI backend
 BACKEND_URL = os.environ.get("BACKEND_URL", "http://127.0.0.1:8000")
-# When running in production on Render, we need to handle the case where the frontend
-# is accessed from outside but still needs to communicate with the backend
-# This helps in accessing backend from both inside the container and from users' browsers
+
 FRONTEND_FACING_BACKEND_URL = os.environ.get("FRONTEND_FACING_BACKEND_URL", BACKEND_URL)
 CHAT_URL = f"{BACKEND_URL}/chat"
 SLOTS_URL = f"{BACKEND_URL}/slots"
@@ -20,7 +16,6 @@ with st.sidebar:
     st.caption("Your friendly appointment booking assistant.")
     st.markdown("---")
 
-    # Display available slots
     st.subheader("Available Slots")
     try:
         response = requests.get(SLOTS_URL)
@@ -61,7 +56,7 @@ with st.sidebar:
 st.title(" Calendo Appointment Bot ")
 st.caption("I can help you book an appointment. Try asking 'Are there any slots available tomorrow?'")
 
-# Example prompts
+
 st.markdown("### Example Prompts")
 st.info("""
 - "Are there any 1-hour slots available tomorrow?"
@@ -83,7 +78,7 @@ if prompt := st.chat_input():
     try:
         # Send request to the backend
         response = requests.post(CHAT_URL, json={"message": prompt})
-        response.raise_for_status() # Raise an exception for bad status codes
+        response.raise_for_status() 
         
         reply = response.json()["reply"]
         
