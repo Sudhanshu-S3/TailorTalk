@@ -4,14 +4,11 @@ import os
 from datetime import date, timedelta
 
 
-BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
+BACKEND_URL = os.environ.get("BACKEND_URL", "https://calendo-vwd2.onrender.com")
 
 CHAT_URL = f"{BACKEND_URL}/chat"
 SLOTS_URL = f"{BACKEND_URL}/slots"
 
-if "health" in st.experimental_get_query_params():
-    st.json({"status": "healthy", "service": "calendo-frontend"})
-    st.stop()  
 
 st.set_page_config(page_title="Calendo")
 
