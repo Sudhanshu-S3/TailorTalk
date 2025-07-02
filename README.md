@@ -39,6 +39,7 @@ Before you start, make sure you have the following:
     - Add your Google API key to this file like this:
       ```
       GOOGLE_API_KEY="YOUR_API_KEY_HERE"
+      CALENDAR_ID= "YOUR_EMAIL_ID"
       ```
 
 ### 3. Install and Run the Backend
