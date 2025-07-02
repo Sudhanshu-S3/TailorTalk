@@ -2,9 +2,7 @@ import streamlit as st
 import requests
 import os
 from datetime import date, timedelta
-from dotenv import load_dotenv
 
-load_dotenv()
 
 BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
 
