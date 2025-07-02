@@ -84,3 +84,9 @@ Once everything is running, you can start chatting with the bot. Try asking thin
 - "What times are free on July 5th, 2025?"
 
 The bot will help you find a time and confirm your booking. Enjoy!
+
+## License
+ISC
+
+## Author
+Sudhanshu Shukla
