@@ -1,26 +1,14 @@
 services:
-  # Backend Service (FastAPI)
+  # Combined Service (FastAPI and Streamlit)
   - type: web
-    name: tailortalk-backend
-    env: python
-    rootDir: backend
-    buildCommand: "pip install -r req.txt"
-    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    name: tailortalk
+    env: docker
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: GOOGLE_API_KEY
         sync: false
-      - key: PYTHON_VERSION
-        value: "3.9"
-
-  # Frontend Service (Streamlit)
-  - type: web
-    name: tailortalk-frontend
-    env: python
-    rootDir: frontend
-    buildCommand: "pip install -r req.txt"
-    startCommand: "streamlit run app.py --server.port $PORT"
-    envVars:
-      - key: BACKEND_URL
-        value: "http://tailortalk-backend:8000"
-      - key: PYTHON_VERSION
-        value: "3.9"
+    ports:
+      - port: 8501
+        name: frontend
+      - port: 8000
+        name: backend

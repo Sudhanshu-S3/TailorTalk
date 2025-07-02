@@ -6,6 +6,10 @@ from datetime import date, timedelta
 # --- IMPORTANT ---
 # Set this to the URL of your deployed FastAPI backend
 BACKEND_URL = os.environ.get("BACKEND_URL", "http://127.0.0.1:8000")
+# When running in production on Render, we need to handle the case where the frontend
+# is accessed from outside but still needs to communicate with the backend
+# This helps in accessing backend from both inside the container and from users' browsers
+FRONTEND_FACING_BACKEND_URL = os.environ.get("FRONTEND_FACING_BACKEND_URL", BACKEND_URL)
 CHAT_URL = f"{BACKEND_URL}/chat"
 SLOTS_URL = f"{BACKEND_URL}/slots"
 
