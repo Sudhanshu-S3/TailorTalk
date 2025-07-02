@@ -20,5 +20,5 @@ def create_calendar_booking(start_time: str, summary: str) -> str:
     """
     service = get_calendar_service()
     event = book_appointment(service, start_time, summary)
-    return f"Booking confirmed for '{summary}' at {start_time}. Event ID: {event['id']}"
+    return f"Booking confirmed for '{summary}' at {start_time}}"
 
