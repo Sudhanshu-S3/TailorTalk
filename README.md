@@ -85,7 +85,7 @@ Once everything is running, you can start chatting with the bot. Try asking thin
 
 The bot will help you find a time and confirm your booking. Enjoy!
 
-## License
+## Licence
 ISC
 
 ## Author
