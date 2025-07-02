@@ -75,7 +75,7 @@ streamlit run app.py
 
 Your web browser should open with the Calendo chat interface, ready for you to use!
 
-## How to Use It 🚀
+## How to Use It
 
 Once everything is running, you can start chatting with the bot. Try asking things like:
 
