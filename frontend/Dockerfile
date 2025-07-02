@@ -2,8 +2,7 @@ FROM python:3.9-slim
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONPATH=/code
+    PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /code
 
@@ -13,11 +12,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r req.txt
 
 # Copy application code
-COPY ./app ./app
-COPY credentials.json /code/credentials.json
-
-# Make sure credentials file exists (will fail the build if missing)
-RUN test -f /code/credentials.json || (echo "credentials.json is missing" && false)
+COPY app.py .
 
 # Run as non-root user for better security
 RUN adduser --disabled-password --gecos "" appuser && \
@@ -25,7 +20,7 @@ RUN adduser --disabled-password --gecos "" appuser && \
 USER appuser
 
 # Expose the port the app runs on
-EXPOSE 8000
+EXPOSE 8501
 
-# Run app.main when the container launches
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+# Run the Streamlit app
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]

@@ -46,3 +46,8 @@ async def get_slots():
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Calendo API"}
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for monitoring."""
+    return {"status": "healthy", "service": "calendo-backend"}

@@ -1,5 +1,6 @@
 import os
 import datetime
+import sys
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from dotenv import load_dotenv
@@ -7,8 +8,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 CALENDAR_ID = os.getenv("CALENDAR_ID")
+if not CALENDAR_ID:
+    print("ERROR: CALENDAR_ID environment variable is not set.")
+    sys.exit(1)
+
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-SERVICE_ACCOUNT_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'credentials.json')
+
+SERVICE_ACCOUNT_FILE = os.getenv("CREDENTIALS_PATH", "/code/credentials.json")
+if not os.path.exists(SERVICE_ACCOUNT_FILE):
+    
+    if os.path.exists("credentials.json"):
+        SERVICE_ACCOUNT_FILE = "credentials.json"
+    
+    elif os.path.exists("../credentials.json"):
+        SERVICE_ACCOUNT_FILE = "../credentials.json"
+    else:
+        print(f"ERROR: credentials.json not found at {SERVICE_ACCOUNT_FILE}")
+        sys.exit(1)
 
 def get_calendar_service():
     """Creates and returns a Google Calendar service object."""

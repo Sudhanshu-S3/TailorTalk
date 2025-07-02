@@ -2,12 +2,18 @@ import streamlit as st
 import requests
 import os
 from datetime import date, timedelta
+from dotenv import load_dotenv
 
-BACKEND_URL = os.environ.get("BACKEND_URL", "http://127.0.0.1:8000")
+load_dotenv()
 
-FRONTEND_FACING_BACKEND_URL = os.environ.get("FRONTEND_FACING_BACKEND_URL", BACKEND_URL)
+BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
+
 CHAT_URL = f"{BACKEND_URL}/chat"
 SLOTS_URL = f"{BACKEND_URL}/slots"
+
+if "health" in st.experimental_get_query_params():
+    st.json({"status": "healthy", "service": "calendo-frontend"})
+    st.stop()  
 
 st.set_page_config(page_title="Calendo")
 
